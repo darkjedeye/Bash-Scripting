@@ -1,6 +1,9 @@
 #!/bin/bash
 
 sudo apt-get update && apt-get dist-upgrade -y && apt install timeout
+sudo apt-get update
+sudo apt-get dist-upgrade -y
+sudo apt install timout
 echo "please wait while we install the rest"
 timeout 30 read -n 1 -s -r -p "Press any key to continue"
 echo " "
@@ -71,6 +74,13 @@ echo "The next password prompt will be the same as the one you entered when inst
 timeout 30 read -n 1 -s -r -p "Press any key to continue"
 echo " "
 mysql -u root -p "CREATE SCHEMA ospos;CREATE USER 'admin'@'%' IDENTIFIED BY 'pointofsale';GRANT ALL PRIVILEGES ON ospos . * TO 'admin'@'%' IDENTIFIED BY 'pointofsale' WITH GRANT OPTION;FLUSH PRIVILEGES;"
+</VirtualHost>
+
+# vim: syntax=apache ts=4 sw=4 sts=4 sr noet" > 000-default.conf
+echo "The next password prompt will be the same as the one you entered when installing Mysql"
+timeout 30 read -n 1 -s -r -p "Press any key to continue"
+echo " "
+mysql -u root -e "CREATE SCHEMA ospos;CREATE USER 'admin'@'%' IDENTIFIED BY 'pointofsale';GRANT ALL PRIVILEGES ON ospos . * TO 'admin'@'%' IDENTIFIED BY 'pointofsale' WITH GRANT OPTION;FLUSH PRIVILEGES;"
 echo "The next password, Please type pointofsale."
 cd /var/www/html/database
 mysql -u admin -p ospos < database.sql
@@ -299,12 +309,15 @@ IncludeOptional conf-enabled/*.conf
 
 # Include the virtual host configurations:
 IncludeOptional sites-enabled/*.conf
-
-# vim: syntax=apache ts=4 sw=4 sts=4 sr noet
 ServerName 192.168.1.160
 "
-
-
+echo " type nano apache2.conf and at this section, make sure it looks the same,
+<Directory /var/www/>
+        Options Indexes FollowSymLinks
+        AllowOverride All
+        Require all granted
+</Directory>
+and change AllowOverride from none to ALL"
 echo "Now you can visit your IP address in your browser. When you do, you'll see a login form.
 Login Form
 Login using these credentials:
