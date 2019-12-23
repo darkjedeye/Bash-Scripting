@@ -24,7 +24,6 @@ apt update && apt upgrade -y
 echo "your system has been updated and upgraded!"
 read -n 1 -s -r -p "Press any key to continue"
 echo " "
-
 # Install the software that is used.
 echo "Now installin the Software on your machine "
 read -n 1 -s -r -p "Press any key to continue"
@@ -42,17 +41,32 @@ figlet "installed!" -f standard -c
  read -n 1 -s -r -p "Press any key to continue"
  echo " "
  else
- echo "The folowing apps will be installed. mc yakuake sl kate konsole cmatrix openssh-server figlet toilet virtualbox virtualbox-dkms"
+ echo "The folowing apps will be installed. mc wine yakuake sl kate konsole cmatrix openssh-server figlet toilet virtualbox virtualbox-dkms"
  read -n 1 -s -r -p "Press any key to continue"
  apt install -y mc yakuake sl kate konsole cmatrix openssh-server figlet toilet virtualbox virtualbox-dkms
  echo "your applications have been"
-figlet "installed!" -f standard -c
+ figlet "installed!" -f standard -c
  read -n 1 -s -r -p "Press any key to continue"
- echo " "
+ echo
+ echo "Wine will now be installed on this system, in order to run some windows applications."
+ read -n 1 -s -r -p "Press any key to continue"
+ sudo dpkg --add-architecture i386 -y
+ cd ~/
+ wget -nc https://dl.winehq.org/wine-builds/winehq.key && sudo apt-key add winehq.key
+ read -p " please confirm you're build name by typing it now, For ubuntu 19.10, it's eoan" DISTRO
+ sudo apt-add-repository 'deb https://dl.winehq.org/wine-builds/ubuntu/ ${DISTRO} main'
+ sudo add-apt-repository ppa:cybermax-dexter/sdl2-backport
+ sudo apt install aptitude
+ sudo aptitude install winehq-devel
+ winecfg
+ echo "Wine is now installed"
+ echo
+ read -n 1 -s -r -p "Press any key to continue"
+ 
 fi 
  #Remove un-neccessary installs!
  
- echo "Npw removing Residule components that were not needed."
+ echo "Now removing Residule components that were not needed."
  read -n 1 -s -r -p "Press any key to continue"
  echo " "
  
