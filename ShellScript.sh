@@ -34,25 +34,32 @@ echo "Is your system a server or a desktop os?"
 read answer
 if [[ "$answer" = "server" ]]
 then 
-echo "The folowing apps will be installed. mc sl konsole cmatrix openssh-server figlet toilet apache2 mysql-server php phpmyadmin"
-read -n 1 -s -r -p "Press any key to continue"
-apt install -y mc sl konsole cmatrix openssh-server figlet toilet apache2 mysql-server php phpmyadmin htop
+read -p "Would you ike the folowing apps will be installed. mc sl konsole cmatrix openssh-server figlet toilet apache2 mysql-server php phpmyadmin [yes/mo]: " SERVER
+if [[ "$SERVER" = "yes" ]]
+apt install -y mc sl konsole cmatrix openssh-server figlet toilet apache2 mysql-server php phpmyadmin htop sshfs neofetch fortune cowsay
 echo "your applications have been"
 figlet "installed!" -f standard -c
  read -n 1 -s -r -p "Press any key to continue"
- echo " "
+ echo
  else
- echo "The folowing apps will be installed. mc yakuake sl kate konsole cmatrix openssh-server figlet toilet virtualbox virtualbox-dkms"
- read -n 1 -s -r -p "Press any key to continue"
- apt install -y mc yakuake sl kate konsole cmatrix openssh-server figlet toilet virtualbox virtualbox-dkms
+    echo "No Programs will be installed!"
+fi
+
+ else
+ read -p "would you like the folowing apps will be installed. mc yakuake sl kate konsole cmatrix openssh-server figlet toilet virtualbox virtualbox-dkms [yes/no]: " DESKTOP
+ if [[ "$DESKTOP" = "yes" ]]
+ apt install -y mc yakuake sl kate konsole cmatrix openssh-server figlet toilet virtualbox virtualbox-dkms sshfs neofetch fortune cowsay
  echo "your applications have been"
 figlet "installed!" -f standard -c
  read -n 1 -s -r -p "Press any key to continue"
- echo " "
+ echo
+ else 
+ echo "No Programs will be installed!"
+ fi
 fi 
  #Remove un-neccessary installs!
  
- echo "Npw removing Residule components that were not needed."
+ echo "Now removing Residule components that were not needed."
  read -n 1 -s -r -p "Press any key to continue"
  echo " "
  
@@ -67,6 +74,9 @@ fi
  echo 'alias      upgrade="sudo apt upgrade -y"'  >> /etc/bash.bashrc
  echo 'alias      cls="clear"'  >> /etc/bash.bashrc
  echo 'alias      matrix="cmatrix"'  >> /etc/bash.bashrc
+ echo ' ' >> /etc/bash.bashrc
+ echo '/usr/games/fortune | /usr/games/cowthink -f tux' >> /etc/bash.bashrc
+ echo ' neofecth' >> /etc/bash.bashrc
 echo " DONE!"
 read -n 1 -s -r -p "Press any key to continue"
 
