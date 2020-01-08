@@ -34,7 +34,7 @@ echo "Is your system a server or a desktop os?"
 read answer
 if [[ "$answer" = "server" ]]
 then 
-read -p "Would you ike the folowing apps will be installed. mc sl konsole cmatrix openssh-server figlet toilet apache2 mysql-server php phpmyadmin [yes/mo]: " SERVER
+read -p "Would you ike the folowing apps will be installed. mc sl konsole cmatrix openssh-server figlet toilet apache2 mysql-server php phpmyadmin htop sshfs neofetch fortune cowsay [yes/mo]: " SERVER
     if [[ "$SERVER" = "yes" ]]
     then
     apt install -y mc sl konsole cmatrix openssh-server figlet toilet apache2 mysql-server php phpmyadmin htop sshfs neofetch fortune cowsay
@@ -47,7 +47,7 @@ read -p "Would you ike the folowing apps will be installed. mc sl konsole cmatri
 fi
 
  else
- read -p "would you like the folowing apps will be installed. mc yakuake sl kate konsole cmatrix openssh-server figlet toilet virtualbox virtualbox-dkms [yes/no]: " DESKTOP
+ read -p "would you like the folowing apps will be installed. yakuake sl kate konsole cmatrix openssh-server figlet toilet virtualbox virtualbox-dkms sshfs neofetch fortune cowsay [yes/no]: " DESKTOP
  if [[ "$DESKTOP" = "yes" ]]
  then
     apt install -y mc yakuake sl kate konsole cmatrix openssh-server figlet toilet virtualbox virtualbox-dkms sshfs neofetch fortune cowsay
@@ -78,7 +78,7 @@ fi
  echo 'alias      matrix="cmatrix"'  >> /etc/bash.bashrc
  echo ' ' >> /etc/bash.bashrc
  echo '/usr/games/fortune | /usr/games/cowthink -f tux' >> /etc/bash.bashrc
- echo ' neofecth' >> /etc/bash.bashrc
+ echo ' neofetch' >> /etc/bash.bashrc
 echo " DONE!"
 read -n 1 -s -r -p "Press any key to continue"
 
