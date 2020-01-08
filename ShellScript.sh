@@ -51,6 +51,17 @@ fi
  if [[ "$DESKTOP" = "yes" ]]
  then
     apt install -y mc yakuake sl kate konsole cmatrix openssh-server figlet toilet virtualbox virtualbox-dkms sshfs neofetch fortune cowsay
+    echo
+    echo "Now installing Brave Browser!"
+    echo
+    curl -s https://brave-browser-apt-release.s3.brave.com/brave-core.asc | sudo apt-key --keyring /etc/apt/trusted.gpg.d/brave-browser-release.gpg add -
+    echo
+    sudo sh -c 'echo "deb [arch=amd64] https://brave-browser-apt-release.s3.brave.com `lsb_release -sc` main" >> /etc/apt/sources.list.d/brave.list'
+    echo
+    apt update
+    sudo apt install brave-browser brave-keyring
+    echo
+    echo "Done!"
     echo "your applications have been"
     figlet "installed!" -f standard -c
     read -n 1 -s -r -p "Press any key to continue"
