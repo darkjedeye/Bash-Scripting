@@ -24,6 +24,7 @@ apt update && apt upgrade -y
 echo "your system has been updated and upgraded!"
 read -n 1 -s -r -p "Press any key to continue"
 echo " "
+
 # Install the software that is used.
 echo "Now installin the Software on your machine "
 read -n 1 -s -r -p "Press any key to continue"
@@ -33,36 +34,28 @@ echo "Is your system a server or a desktop os?"
 read answer
 if [[ "$answer" = "server" ]]
 then 
-echo "The folowing apps will be installed. mc sl konsole cmatrix openssh-server figlet toilet apache2 mysql-server php phpmyadmin"
-read -n 1 -s -r -p "Press any key to continue"
-apt install -y mc sl konsole cmatrix openssh-server figlet toilet apache2 mysql-server php phpmyadmin htop
+read -p "Would you ike the folowing apps will be installed. mc sl konsole cmatrix openssh-server figlet toilet apache2 mysql-server php phpmyadmin [yes/mo]: " SERVER
+if [[ "$SERVER" = "yes" ]]
+apt install -y mc sl konsole cmatrix openssh-server figlet toilet apache2 mysql-server php phpmyadmin htop sshfs neofetch fortune cowsay
 echo "your applications have been"
 figlet "installed!" -f standard -c
  read -n 1 -s -r -p "Press any key to continue"
- echo " "
+ echo
  else
- echo "The folowing apps will be installed. mc wine yakuake sl kate konsole cmatrix openssh-server figlet toilet virtualbox virtualbox-dkms"
- read -n 1 -s -r -p "Press any key to continue"
- apt install -y mc yakuake sl kate konsole cmatrix openssh-server figlet toilet virtualbox virtualbox-dkms
+    echo "No Programs will be installed!"
+fi
+
+ else
+ read -p "would you like the folowing apps will be installed. mc yakuake sl kate konsole cmatrix openssh-server figlet toilet virtualbox virtualbox-dkms [yes/no]: " DESKTOP
+ if [[ "$DESKTOP" = "yes" ]]
+ apt install -y mc yakuake sl kate konsole cmatrix openssh-server figlet toilet virtualbox virtualbox-dkms sshfs neofetch fortune cowsay
  echo "your applications have been"
- figlet "installed!" -f standard -c
+figlet "installed!" -f standard -c
  read -n 1 -s -r -p "Press any key to continue"
  echo
- echo "Wine will now be installed on this system, in order to run some windows applications."
- read -n 1 -s -r -p "Press any key to continue"
- sudo dpkg --add-architecture i386 -y
- cd ~/
- wget -nc https://dl.winehq.org/wine-builds/winehq.key && sudo apt-key add winehq.key
- read -p " please confirm you're build name by typing it now, For ubuntu 19.10, it's eoan" DISTRO
- sudo apt-add-repository 'deb https://dl.winehq.org/wine-builds/ubuntu/ ${DISTRO} main'
- sudo add-apt-repository ppa:cybermax-dexter/sdl2-backport
- sudo apt install aptitude
- sudo aptitude install winehq-devel
- winecfg
- echo "Wine is now installed"
- echo
- read -n 1 -s -r -p "Press any key to continue"
- 
+ else 
+ echo "No Programs will be installed!"
+ fi
 fi 
  #Remove un-neccessary installs!
  
@@ -81,6 +74,9 @@ fi
  echo 'alias      upgrade="sudo apt upgrade -y"'  >> /etc/bash.bashrc
  echo 'alias      cls="clear"'  >> /etc/bash.bashrc
  echo 'alias      matrix="cmatrix"'  >> /etc/bash.bashrc
+ echo ' ' >> /etc/bash.bashrc
+ echo '/usr/games/fortune | /usr/games/cowthink -f tux' >> /etc/bash.bashrc
+ echo ' neofecth' >> /etc/bash.bashrc
 echo " DONE!"
 read -n 1 -s -r -p "Press any key to continue"
 
