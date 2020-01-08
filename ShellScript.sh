@@ -35,27 +35,29 @@ read answer
 if [[ "$answer" = "server" ]]
 then 
 read -p "Would you ike the folowing apps will be installed. mc sl konsole cmatrix openssh-server figlet toilet apache2 mysql-server php phpmyadmin [yes/mo]: " SERVER
-if [[ "$SERVER" = "yes" ]]
-apt install -y mc sl konsole cmatrix openssh-server figlet toilet apache2 mysql-server php phpmyadmin htop sshfs neofetch fortune cowsay
-echo "your applications have been"
-figlet "installed!" -f standard -c
- read -n 1 -s -r -p "Press any key to continue"
- echo
- else
-    echo "No Programs will be installed!"
+    if [[ "$SERVER" = "yes" ]]
+    then
+    apt install -y mc sl konsole cmatrix openssh-server figlet toilet apache2 mysql-server php phpmyadmin htop sshfs neofetch fortune cowsay
+    echo "your applications have been"
+    figlet "installed!" -f standard -c
+    read -n 1 -s -r -p "Press any key to continue"
+    echo
+     else
+        echo "No Programs will be installed!"
 fi
 
  else
  read -p "would you like the folowing apps will be installed. mc yakuake sl kate konsole cmatrix openssh-server figlet toilet virtualbox virtualbox-dkms [yes/no]: " DESKTOP
  if [[ "$DESKTOP" = "yes" ]]
- apt install -y mc yakuake sl kate konsole cmatrix openssh-server figlet toilet virtualbox virtualbox-dkms sshfs neofetch fortune cowsay
- echo "your applications have been"
-figlet "installed!" -f standard -c
- read -n 1 -s -r -p "Press any key to continue"
- echo
- else 
- echo "No Programs will be installed!"
- fi
+ then
+    apt install -y mc yakuake sl kate konsole cmatrix openssh-server figlet toilet virtualbox virtualbox-dkms sshfs neofetch fortune cowsay
+    echo "your applications have been"
+    figlet "installed!" -f standard -c
+    read -n 1 -s -r -p "Press any key to continue"
+    echo
+    else 
+    echo "No Programs will be installed!"
+    fi
 fi 
  #Remove un-neccessary installs!
  
