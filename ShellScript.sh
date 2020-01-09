@@ -20,10 +20,6 @@ then
 
 #get the system to most up to date specs....
 
-apt update && apt upgrade -y
-echo "your system has been updated and upgraded!"
-read -n 1 -s -r -p "Press any key to continue"
-echo " "
 
 # Install the software that is used.
 echo "Now installin the Software on your machine "
@@ -47,27 +43,39 @@ read -p "Would you ike the folowing apps will be installed. mc sl konsole cmatri
 fi
 
  else
- read -p "would you like the folowing apps will be installed. yakuake sl kate konsole cmatrix openssh-server figlet toilet virtualbox virtualbox-dkms sshfs neofetch fortune cowsay [yes/no]: " DESKTOP
- if [[ "$DESKTOP" = "yes" ]]
- then
-    apt install -y mc yakuake sl kate konsole cmatrix openssh-server figlet toilet virtualbox virtualbox-dkms sshfs neofetch fortune cowsay
-    echo
-    echo "Now installing Brave Browser!"
-    echo
-    curl -s https://brave-browser-apt-release.s3.brave.com/brave-core.asc | sudo apt-key --keyring /etc/apt/trusted.gpg.d/brave-browser-release.gpg add -
-    echo
-    sudo sh -c 'echo "deb [arch=amd64] https://brave-browser-apt-release.s3.brave.com `lsb_release -sc` main" >> /etc/apt/sources.list.d/brave.list'
-    echo
-    apt update
-    sudo apt install brave-browser brave-keyring
-    echo
-    echo "Done!"
-    echo "your applications have been"
-    figlet "installed!" -f standard -c
-    read -n 1 -s -r -p "Press any key to continue"
-    echo
-    else 
-    echo "No Programs will be installed!"
+ read -p "What Distribution are you running? RPM RHEL openSUSE Debian: " Distribution
+ if [[ "$Distribution" = "Debian" ]]
+    then
+    echo "Updating system!"
+apt update
+apt upgrade -y
+echo "your system has been updated and upgraded!"
+read -n 1 -s -r -p "Press any key to continue"
+echo 
+    read -p "would you like the folowing apps will be installed. yakuake sl kate konsole cmatrix openssh-server figlet toilet virtualbox virtualbox-dkms sshfs neofetch fortune cowsay [yes/no]: " DESKTOP
+        if [[ "$DESKTOP" = "yes" ]]
+            then
+                apt install -y mc yakuake sl kate konsole cmatrix openssh-server figlet toilet virtualbox virtualbox-dkms sshfs neofetch fortune cowsay
+                echo
+                echo "Now installing Brave Browser!"
+                echo
+                curl -s https://brave-browser-apt-release.s3.brave.com/brave-core.asc | sudo apt-key --keyring /etc/apt/trusted.gpg.d/brave-browser-release.gpg add -
+                echo
+                sudo sh -c 'echo "deb [arch=amd64] https://brave-browser-apt-release.s3.brave.com `lsb_release -sc` main" >> /etc/apt/sources.list.d/brave.list'
+                echo
+                apt update
+                sudo apt install brave-browser brave-keyring
+                echo
+                echo "Done!"
+                echo "your applications have been"
+                figlet "installed!" -f standard -c
+                read -n 1 -s -r -p "Press any key to continue"
+                echo
+                else 
+                echo "No Programs will be installed!"
+        fi
+    else
+        echo "No selection made!"
     fi
 fi 
  #Remove un-neccessary installs!
@@ -80,16 +88,20 @@ fi
 
  
  # Modify the bash.bashrc file to include the alias' i use.
- echo " we will now add to your Alias section!"
- read -n 1 -s -r -p "Press any key to continue"
- echo 'alias      super="sudo su -"' >> /etc/bash.bashrc
- echo 'alias      update="sudo apt update"' >> /etc/bash.bashrc
- echo 'alias      upgrade="sudo apt upgrade -y"'  >> /etc/bash.bashrc
- echo 'alias      cls="clear"'  >> /etc/bash.bashrc
- echo 'alias      matrix="cmatrix"'  >> /etc/bash.bashrc
- echo ' ' >> /etc/bash.bashrc
- echo '/usr/games/fortune | /usr/games/cowthink -f tux' >> /etc/bash.bashrc
- echo ' neofetch' >> /etc/bash.bashrc
+ read -p "Update your Alias section? [yes/no]: " ALIASES
+ if [[ "$ALIASES" = "yes" ]] 
+    then
+        echo 'alias      super="sudo su -"' >> /etc/bash.bashrc
+        echo 'alias      update="sudo apt update"' >> /etc/bash.bashrc
+        echo 'alias      upgrade="sudo apt upgrade -y"'  >> /etc/bash.bashrc
+        echo 'alias      cls="clear"'  >> /etc/bash.bashrc
+        echo 'alias      matrix="cmatrix"'  >> /etc/bash.bashrc
+        echo ' ' >> /etc/bash.bashrc
+        echo '/usr/games/fortune | /usr/games/cowthink -f tux' >> /etc/bash.bashrc
+        echo ' neofetch' >> /etc/bash.bashrc
+    else
+        echo "OKAY!"
+    fi
 echo " DONE!"
 read -n 1 -s -r -p "Press any key to continue"
 
