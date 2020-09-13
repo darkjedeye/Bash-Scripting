@@ -20,16 +20,16 @@ then
 	echo " "
 	echo "Updating you system"
 	apt-get update && apt upgrade -y
-	read -n 1 -s -r -p "Press any key to continue"
+	read -n 1 -s -r -p "Upgraded system."
 	echo " "
 	echo "Installing Remote desktop system!"
 	apt-get install xrdp -y
-	read -n 1 -s -r -p "Press any key to continue"
+	read -n 1 -s -r -p "Installed Remote Desktop"
 	echo " "
 	
 	echo "Please select a desktop environment (GUI):"
 	select GUI in MATE XFCE
-while :
+while true
 do
   case $GUI in
 	MATE)
