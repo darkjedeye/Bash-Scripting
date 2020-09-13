@@ -26,37 +26,40 @@ then
 	apt-get install xrdp -y
 	read -n 1 -s -r -p "Installed Remote Desktop"
 	echo " "
-	while true
-do
+	
+	else
+	echo "Please log in as root or use sudo if you are an admin!"
+fi
+	
+	do
 	echo "Please select a desktop environment (GUI):"
 	select GUI in MATE XFCE
-do
-  case $GUI in
+	do
+	case $GUI in
 	MATE)
-		echo "You have chosen MATE Desktop"
-		apt-get install -y mate-core mate-desktop-environment mate-notification-daemon
-		sed -i.bak '/fi/a #xrdp multiple users configuration \n mate-session \n' /etc/xrdp/startwm.sh
-		break
-		;;
+	echo "You have chosen MATE Desktop"
+	apt-get install -y mate-core mate-desktop-environment mate-notification-daemon
+	sed -i.bak '/fi/a #xrdp multiple users configuration \n mate-session \n' /etc/xrdp/startwm.sh
+	break
+	;;
 	XFCE)
-		echo "You have chosen XFCE4 Desktop"
-		apt-get install -y xfce4 xfce4-terminal
-		break
-		;;
+	echo "You have chosen XFCE4 Desktop"
+	apt-get install -y xfce4 xfce4-terminal
+	break
+	;;
 	*)
-		echo "Invalid option"
-		;;
+	echo "Invalid option"
+	;;
   esac
-
-echo " "
-
+  done
+  done
+  
 adduser xrdp ssl-cert
 ufw allow 3389/tcp
 /etc/init.d/xrdp restart
+		
 	
-else
-	echo "Please log in as root or use sudo if you are an admin!"
-fi
+
 	
 
 
