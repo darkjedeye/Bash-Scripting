@@ -55,4 +55,4 @@ echo " "
 adduser xrdp ssl-cert
 ufw allow 3389/tcp
 /etc/init.d/xrdp restart
-
+fi
