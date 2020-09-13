@@ -54,7 +54,7 @@ fi
 			break
 			;;
 			Exit)
-			apt install figlet cmatrix mc kate yakuake konsole sl cowsay forune
+			apt install -y figlet cmatrix mc kate yakuake konsole sl cowsay fortune
     			echo "This Script was written by The Linux GOD! Darkjedeye!"
     			read -n 1 -s -r -p "Press any key to continue"
     			echo " "
@@ -62,6 +62,7 @@ fi
     			echo "Email Darkjedeye on info@cisit.co.za"
     			read -n 1 -s -r -p "Press any key to continue"
     			echo "Good Bye!"
+			apt autoremove
     			break 2
     			;;
 			*)
