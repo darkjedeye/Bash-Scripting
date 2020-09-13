@@ -26,11 +26,7 @@ then
 	apt-get install xrdp -y
 	read -n 1 -s -r -p "Installed Remote Desktop"
 	echo " "
-else
-	echo "Please log in as root or use sudo if you are an admin!"
-fi
-	
-while true
+	while true
 do
 	echo "Please select a desktop environment (GUI):"
 	select GUI in MATE XFCE
@@ -51,10 +47,16 @@ do
 		echo "Invalid option"
 		;;
   esac
-done
+
 echo " "
 
 adduser xrdp ssl-cert
 ufw allow 3389/tcp
 /etc/init.d/xrdp restart
+	
+else
+	echo "Please log in as root or use sudo if you are an admin!"
+fi
+	
+
 
