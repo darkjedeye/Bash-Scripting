@@ -28,9 +28,9 @@ then
 	echo " "
 	
 	echo "Please select a desktop environment (GUI):"
+	select GUI in MATE XFCE
 while :
 do
-  read GUI
   case $GUI in
 	MATE)
 		echo "You have chosen MATE Desktop"
