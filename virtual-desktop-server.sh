@@ -56,10 +56,3 @@ adduser xrdp ssl-cert
 ufw allow 3389/tcp
 /etc/init.d/xrdp restart
 
-
-
-else
-	echo "You re not root and therefore may not install software. Please use root or sudo command."
-fi
-
-#
