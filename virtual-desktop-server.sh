@@ -33,20 +33,37 @@ fi
 	while true
 		do
 		echo "Please select a desktop environment (GUI):"
-		select GUI in MATE XFCE
+		select GUI in MATE XFCE Exit
 			do
 			case $GUI in
 			MATE)
 			echo "You have chosen MATE Desktop"
 			apt-get install -y mate-core mate-desktop-environment mate-notification-daemon
 			sed -i.bak '/fi/a #xrdp multiple users configuration \n mate-session \n' /etc/xrdp/startwm.sh
+			adduser xrdp ssl-cert
+			ufw allow 3389/tcp
+			/etc/init.d/xrdp restart
 			break
 			;;
 			XFCE)
 			echo "You have chosen XFCE4 Desktop"
 			apt-get install -y xfce4 xfce4-terminal
+			adduser xrdp ssl-cert
+			ufw allow 3389/tcp
+			/etc/init.d/xrdp restart
 			break
 			;;
+			Exit)
+			apt install figlet cmatrix mc kate yakuake konsole sl cowsay forune
+    			echo "This Script was written by The Linux GOD! Darkjedeye!"
+    			read -n 1 -s -r -p "Press any key to continue"
+    			echo " "
+    			echo "If you would like your own personalised script, with your own specific general commands,"
+    			echo "Email Darkjedeye on info@cisit.co.za"
+    			read -n 1 -s -r -p "Press any key to continue"
+    			echo "Good Bye!"
+    			break 2
+    			;;
 			*)
 			echo "Invalid option"
 			;;
@@ -54,9 +71,7 @@ fi
 			done
   		done
   
-adduser xrdp ssl-cert
-ufw allow 3389/tcp
-/etc/init.d/xrdp restart
+
 		
 	
 
