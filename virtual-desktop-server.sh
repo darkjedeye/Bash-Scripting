@@ -27,9 +27,11 @@ then
 	read -n 1 -s -r -p "Installed Remote Desktop"
 	echo " "
 	
+	
+while true
+do
 	echo "Please select a desktop environment (GUI):"
 	select GUI in MATE XFCE
-while true
 do
   case $GUI in
 	MATE)
