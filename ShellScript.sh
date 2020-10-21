@@ -45,7 +45,21 @@ apt install figlet -y
 echo "your applications have been"
 figlet "installed!" -f standard -c
  read -n 1 -s -r -p "Press any key to continue"
- echo
+ echo " "
+ echo "would you like to install RDP server? [y/n]"
+ read rdp
+ if [[ "$rdp" = "y" ]]
+ then
+apt update
+apt install xfce4 xfce4-goodies xorg dbus-x11 x11-xserver-utils -y
+apt install xrdp -y
+adduser xrdp ssl-cert  
+systemctl restart xrdp
+ufw allow 3389
+apt upgrade -y && sudo apt dist-upgrade -y && sudo apt autoremove -y
+else
+echo "No Problem."
+fi
  else
     echo "No Programs will be installed!"
 fi
