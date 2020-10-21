@@ -3,34 +3,33 @@
 sudo apt-get update && apt-get dist-upgrade -y && apt install timeout
 sudo apt-get update
 sudo apt-get dist-upgrade -y
-sudo apt install timout
-echo "please wait while we install the rest"
-timeout 30 read -n 1 -s -r -p "Press any key to continue"
+  echo "please wait while we install the rest"
+read -n 1 -s -r -p "Press any key to continue"
 echo " "
 echo "Installing Apache Server"
-timeout 30 read -n 1 -s -r -p "Press any key to continue"
+  read -n 1 -s -r -p "Press any key to continue"
 echo " "
 sudo apt-get install apache2 -y
 echo "ServerName 192.168.1.160" >> /etc/apache2/apache2.conf
 sudo apache2ctl configtest
 sudo ufw allow in "Apache Full"
 echo "Apache Server installed!"
-timeout 30 read -n 1 -s -r -p "Press any key to continue"
+  read -n 1 -s -r -p "Press any key to continue"
 echo " "
 echo "Now installing Mysql Server!"
-timeout 30 read -n 1 -s -r -p "Press any key to continue"
+  read -n 1 -s -r -p "Press any key to continue"
 echo " "
 sudo apt install mysql-server -y
 echo "Mysql install done!"
 echo " "
-timeout 30 read -n 1 -s -r -p "Press any key to continue"
+  read -n 1 -s -r -p "Press any key to continue"
 echo " "
 echo "Now installing PHP!"
-timeout 30 read -n 1 -s -r -p "Press any key to continue"
+  read -n 1 -s -r -p "Press any key to continue"
 echo " "
 sudo apt-get install php libapache2-mod-php php-mcrypt php-mysql php-intl php-gd php-bcmath php-common php-curl
 echo "Done!"
-timeout 30 read -n 1 -s -r -p "Press any key to continue"
+  read -n 1 -s -r -p "Press any key to continue"
 echo " "
 sudo a2enmod rewrite
 sudo service apache2 restart
@@ -71,7 +70,7 @@ echo "<VirtualHost *:80>
         #Include conf-available/serve-cgi-bin.conf
 </VirtualHost>" > 000-default.conf
 echo "The next password prompt will be the same as the one you entered when installing Mysql"
-timeout 30 read -n 1 -s -r -p "Press any key to continue"
+  read -n 1 -s -r -p "Press any key to continue"
 echo " "
 mysql -u root -p "CREATE SCHEMA ospos;CREATE USER 'admin'@'%' IDENTIFIED BY 'pointofsale';GRANT ALL PRIVILEGES ON ospos . * TO 'admin'@'%' IDENTIFIED BY 'pointofsale' WITH GRANT OPTION;FLUSH PRIVILEGES;"
 echo "The next password, Please type the same password you used for MYSQL"
