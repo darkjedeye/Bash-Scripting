@@ -12,7 +12,7 @@ echo " "
 echo "Please enter the url for your server." 
 read servername
 sudo apt-get install apache2 -y
-echo 'ServerName $servername' >> /etc/apache2/apache2.conf
+sudo echo 'ServerName $servername' >> /etc/apache2/apache2.conf
 sudo apache2ctl configtest
 sudo ufw allow in "Apache Full"
 echo "Apache Server installed!"
