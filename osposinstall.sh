@@ -9,8 +9,10 @@ echo " "
 echo "Installing Apache Server"
   read -n 1 -s -r -p "Press any key to continue"
 echo " "
+echo "Please enter the url for your server." 
+read servername
 sudo apt-get install apache2 -y
-echo "ServerName 192.168.1.160" >> /etc/apache2/apache2.conf
+echo 'ServerName $servername' >> /etc/apache2/apache2.conf
 sudo apache2ctl configtest
 sudo ufw allow in "Apache Full"
 echo "Apache Server installed!"
@@ -34,10 +36,10 @@ echo " "
 sudo a2enmod rewrite
 sudo service apache2 restart
 cd /var/www/html
-sudo wget https://github.com/opensourcepos/opensourcepos/releases/download/3.1.1/opensourcepos.20170909085348.3.1.1.76a002.zip
+sudo wget hhttps://github.com/opensourcepos/opensourcepos/releases/download/3.3.2/opensourcepos.20200903075833.3.3.2.bb309c.zip
 sudo apt install unzip -y
-sudo unzip opensourcepos.20170909085348.3.1.1.76a002.zip
-sudo rm opensourcepos.20170909085348.3.1.1.76a002.zip
+sudo unzip opensourcepos.20200903075833.3.3.2.bb309c.zip
+sudo rm opensourcepos.20200903075833.3.3.2.bb309c.zip
 cd /etc/apache2/sites-available
 cp 000-default.conf 000-default.old
 echo "<VirtualHost *:80>
@@ -82,8 +84,7 @@ nano config.php
 Find the code that says $config['encryption_key'] and add your key. Then press Ctrl-x to exit, making sure you save your changes."
 cd /etc/apache2
 cp apache2.conf apache2.old
-echo "
-"
+echo " "
 echo " type nano apache2.conf and at this section, make sure it looks the same,
 <Directory /var/www/>
         Options Indexes FollowSymLinks
