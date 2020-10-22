@@ -5,6 +5,9 @@ echo "Your UID is ${UID}."
 #check root
 if [[ "${UID}" -eq 0 ]]
 then
+echo "Updating system."
+read -n 1 -s -r -p "Press any key to continue"
+echo
 apt-get update && apt-get dist-upgrade -y && apt install timeout
 apt-get update
 apt-get dist-upgrade -y
@@ -17,7 +20,13 @@ echo " "
 echo "Please enter the url for your server." 
 read servername
 apt-get install apache2 -y
+echo "Adding your server name to apache config."
+read -n 1 -s -r -p "Press any key to continue"
 echo 'ServerName $servername' >> /etc/apache2/apache2.conf
+echo
+echo "Testing apache config."
+read -n 1 -s -r -p "Press any key to continue"
+echo
 apache2ctl configtest
 ufw allow in "Apache Full"
 echo "Apache Server installed!"
@@ -39,9 +48,12 @@ echo "Done!"
   read -n 1 -s -r -p "Press any key to continue"
 echo " "
 a2enmod rewrite
+echo "Rewrite mod is enabed!"
+read -n 1 -s -r -p "Press any key to continue."
+echo
 service apache2 restart
 cd /var/www/html
-wget hhttps://github.com/opensourcepos/opensourcepos/releases/download/3.3.2/opensourcepos.20200903075833.3.3.2.bb309c.zip
+wget https://github.com/opensourcepos/opensourcepos/releases/download/3.3.2/opensourcepos.20200903075833.3.3.2.bb309c.zip
 apt install unzip -y
 unzip opensourcepos.20200903075833.3.3.2.bb309c.zip
 rm opensourcepos.20200903075833.3.3.2.bb309c.zip
