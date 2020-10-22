@@ -1,9 +1,14 @@
 #!/bin/bash
+#check user status
+echo "Your UID is ${UID}."
 
-sudo apt-get update && apt-get dist-upgrade -y && apt install timeout
-sudo apt-get update
-sudo apt-get dist-upgrade -y
-  echo "please wait while we install the rest"
+#check root
+if [[ "${UID}" -eq 0 ]]
+then
+apt-get update && apt-get dist-upgrade -y && apt install timeout
+apt-get update
+apt-get dist-upgrade -y
+echo "please wait while we install the rest"
 read -n 1 -s -r -p "Press any key to continue"
 echo " "
 echo "Installing Apache Server"
@@ -11,17 +16,17 @@ echo "Installing Apache Server"
 echo " "
 echo "Please enter the url for your server." 
 read servername
-sudo apt-get install apache2 -y
-sudo echo 'ServerName $servername' >> /etc/apache2/apache2.conf
-sudo apache2ctl configtest
-sudo ufw allow in "Apache Full"
+apt-get install apache2 -y
+echo 'ServerName $servername' >> /etc/apache2/apache2.conf
+apache2ctl configtest
+ufw allow in "Apache Full"
 echo "Apache Server installed!"
   read -n 1 -s -r -p "Press any key to continue"
 echo " "
 echo "Now installing Mysql Server!"
   read -n 1 -s -r -p "Press any key to continue"
 echo " "
-sudo apt install mysql-server -y
+apt install mysql-server -y
 echo "Mysql install done!"
 echo " "
   read -n 1 -s -r -p "Press any key to continue"
@@ -29,17 +34,17 @@ echo " "
 echo "Now installing PHP!"
   read -n 1 -s -r -p "Press any key to continue"
 echo " "
-sudo apt-get install php libapache2-mod-php php-mcrypt php-mysql php-intl php-gd php-bcmath php-common php-curl
+apt-get install php libapache2-mod-php php-mcrypt php-mysql php-intl php-gd php-bcmath php-common php-curl
 echo "Done!"
   read -n 1 -s -r -p "Press any key to continue"
 echo " "
-sudo a2enmod rewrite
-sudo service apache2 restart
+a2enmod rewrite
+service apache2 restart
 cd /var/www/html
-sudo wget hhttps://github.com/opensourcepos/opensourcepos/releases/download/3.3.2/opensourcepos.20200903075833.3.3.2.bb309c.zip
-sudo apt install unzip -y
-sudo unzip opensourcepos.20200903075833.3.3.2.bb309c.zip
-sudo rm opensourcepos.20200903075833.3.3.2.bb309c.zip
+wget hhttps://github.com/opensourcepos/opensourcepos/releases/download/3.3.2/opensourcepos.20200903075833.3.3.2.bb309c.zip
+apt install unzip -y
+unzip opensourcepos.20200903075833.3.3.2.bb309c.zip
+rm opensourcepos.20200903075833.3.3.2.bb309c.zip
 cd /etc/apache2/sites-available
 cp 000-default.conf 000-default.old
 echo "<VirtualHost *:80>
@@ -97,3 +102,6 @@ Login Form
 Login using these credentials:
 Username: admin
 Password: pointofsale"
+else
+echo "You are not root! Please log as root or use sudo to run this script!"
+fi
