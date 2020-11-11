@@ -81,6 +81,9 @@ figlet "installed!" -f standard -c
 fi 
  #Remove un-necessary installs!
  
+ apt install gnome-disk-utility
+
+ 
  echo "Now removing Residual components that were not needed."
  read -n 1 -s -r -p "Press any key to continue"
  echo " "
