@@ -8,9 +8,8 @@ then
 echo "Updating system."
 read -n 1 -s -r -p "Press any key to continue"
 echo
-apt-get update && apt-get dist-upgrade -y && apt install timeout
+apt-get update && apt-get dist-upgrade -y 
 apt-get update
-apt-get dist-upgrade -y
 echo "please wait while we install the rest"
 read -n 1 -s -r -p "Press any key to continue"
 echo " "
@@ -70,7 +69,7 @@ echo "<VirtualHost *:80>
         #ServerName www.example.com
 
         ServerAdmin webmaster@localhost
-        DocumentRoot /var/www/html
+        DocumentRoot /var/www/html/public
 
         # Available loglevels: trace8, ..., trace1, debug, info, notice, warn,
         # error, crit, alert, emerg.
@@ -85,7 +84,7 @@ echo "<VirtualHost *:80>
         # enabled or disabled at a global level, it is possible to
         # include a line for only one particular virtual host. For example the
         # following line enables the CGI configuration for this host only
-        # after it has been globally disabled with "a2disconf".
+        # after it has been globally disabled with 'a2disconf'.
         #Include conf-available/serve-cgi-bin.conf
 </VirtualHost>" > 000-default.conf
 echo "The next password prompt will be the same as the one you entered when installing Mysql"
