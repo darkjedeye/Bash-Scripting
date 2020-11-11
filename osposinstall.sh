@@ -6,49 +6,49 @@ echo "Your UID is ${UID}."
 if [[ "${UID}" -eq 0 ]]
 then
 echo "Updating system."
-read -n 1 -s -r -p "Press any key to continue"
+read -n 1 -s -r -p -t 5 "Press any key to continue"
 echo
 apt-get update && apt-get dist-upgrade -y 
 apt-get update
 echo "please wait while we install the rest"
-read -n 1 -s -r -p "Press any key to continue"
+read -n 1 -s -r -p -t 5 "Press any key to continue"
 echo " "
 echo "Installing Apache Server"
-  read -n 1 -s -r -p "Press any key to continue"
+  read -n 1 -s -r -p -t 5 "Press any key to continue"
 echo " "
 echo "Please enter the url for your server." 
 read servername
 apt-get install apache2 -y
 echo "Adding your server name to apache config."
-read -n 1 -s -r -p "Press any key to continue"
+read -n 1 -s -r -p -t 5 "Press any key to continue"
 echo 'ServerName $servername' >> /etc/apache2/apache2.conf
 echo
 echo "Testing apache config."
-read -n 1 -s -r -p "Press any key to continue"
+read -n 1 -s -r -p -t 5 "Press any key to continue"
 echo
 apache2ctl configtest
 ufw allow in "Apache Full"
 echo "Apache Server installed!"
-  read -n 1 -s -r -p "Press any key to continue"
+  read -n 1 -s -r -p -t 5 "Press any key to continue"
 echo " "
 echo "Now installing Mysql Server!"
-  read -n 1 -s -r -p "Press any key to continue"
+  read -n 1 -s -r -p -t 5 "Press any key to continue"
 echo " "
 apt install mysql-server -y
 echo "Mysql install done!"
 echo " "
-  read -n 1 -s -r -p "Press any key to continue"
+  read -n 1 -s -r -p -t 5 "Press any key to continue"
 echo " "
 echo "Now installing PHP!"
-  read -n 1 -s -r -p "Press any key to continue"
+  read -n 1 -s -r -p -t 5 "Press any key to continue"
 echo " "
 apt-get install php libapache2-mod-php php-mcrypt php-mysql php-intl php-gd php-bcmath php-common php-curl
 echo "Done!"
-  read -n 1 -s -r -p "Press any key to continue"
+  read -n 1 -s -r -p -t 5 "Press any key to continue"
 echo " "
 a2enmod rewrite
 echo "Rewrite mod is enabed!"
-read -n 1 -s -r -p "Press any key to continue."
+read -n 1 -s -r -p -t 5 "Press any key to continue"
 echo
 service apache2 restart
 cd /var/www/html
