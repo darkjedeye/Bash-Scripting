@@ -21,6 +21,7 @@ ufw allow 9090
 ufw allow ssh
 echo "now removing unneccesary files!"
 read -t 10 -n 1 -s -r -p "Press any key to continue"
+apt-get autoremove -y
 else 
 echo "why run the script?"
 fi
