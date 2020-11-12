@@ -5,7 +5,7 @@ echo "Your UID is ${UID}."
 #check root
 if [[ "${UID}" -eq 0 ]]
 then
-echo "Updateint the system!"
+echo "Updating the system!"
 read -t 10 -n 1 -s -r -p "Press any key to continue"
 apt update
 apt upgrade -y && apt dist-upgrade -y
