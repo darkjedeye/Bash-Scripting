@@ -18,7 +18,7 @@ systemctl enable --now cockpit.socket
 netstat -a | grep 9090
 systemctl enable --now cockpit.socket
 ufw allow 9090
-ufw allo ssh
+ufw allow ssh
 echo "now removing unneccesary files!"
 read -t 10 -n 1 -s -r -p "Press any key to continue"
 else 
