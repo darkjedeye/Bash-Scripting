@@ -22,12 +22,12 @@ then
 
 apt update && apt upgrade -y
 echo "your system has been updated and upgraded!"
-read -n 1 -s -r -p "Press any key to continue"
+read -t 5 -n 1 -s -r -p "Press any key to continue"
 echo " "
 
 # Install the software that is used.
 echo "Now installing the Software on your machine "
-read -n 1 -s -r -p "Press any key to continue"
+read -t 5 -n 1 -s -r -p "Press any key to continue"
 echo " "
 
 echo "Is your system a server or a desktop OS?"
@@ -73,7 +73,7 @@ fi
  apt install -y mc yakuake sl kate konsole cmatrix openssh-server figlet toilet virtualbox virtualbox-dkms sshfs neofetch fortune cowsay
  echo "your applications have been"
 figlet "installed!" -f standard -c
- read -n 1 -s -r -p "Press any key to continue"
+ read -t 5 -n 1 -s -r -p "Press any key to continue"
  echo
  else 
  echo "No Programs will be installed!"
@@ -93,7 +93,7 @@ fi
  
  # Modify the bash.bashrc file to include the alias' i use.
  echo " we will now add to your Alias section!"
- read -n 1 -s -r -p "Press any key to continue"
+ read -t 5 -n 1 -s -r -p "Press any key to continue"
  echo 'alias      super="sudo su -"' >> /etc/bash.bashrc
  echo 'alias      update="sudo apt update"' >> /etc/bash.bashrc
  echo 'alias      upgrade="sudo apt upgrade -y"'  >> /etc/bash.bashrc
@@ -103,17 +103,17 @@ fi
  echo '/usr/games/fortune | /usr/games/cowthink -f tux' >> /etc/bash.bashrc
  echo ' neofetch' >> /etc/bash.bashrc
 echo " DONE!"
-read -n 1 -s -r -p "Press any key to continue"
+read -t 5 -n 1 -s -r -p "Press any key to continue"
 
 # End of the script
 
 echo " "
 echo "This script has completed it's run."
-read -n 1 -s -r -p "Press any key to continue"
+read -t 5 -n 1 -s -r -p "Press any key to continue"
 echo " "
 echo "This script was written by the Linux Wizzard"
 figlet "DARKJEDEYE"
-read -n 1 -s -r -p "Press any key to continue"
+read -t 5 -n 1 -s -r -p "Press any key to continue"
 echo " "
 echo "If you wish to have your own script like this, personalized with your own details."
 echo "email Darkjedeye on"
