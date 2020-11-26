@@ -99,6 +99,7 @@ fi
  echo 'alias      upgrade="sudo apt upgrade -y"'  >> /etc/bash.bashrc
  echo 'alias      cls="clear"'  >> /etc/bash.bashrc
  echo 'alias      matrix="cmatrix"'  >> /etc/bash.bashrc
+ echo 'alias	  external="dig +short myip.opendns.com @resolver1.opendns.com"' >> /etc/bash.bashrc
  echo ' ' >> /etc/bash.bashrc
  echo '/usr/games/fortune | /usr/games/cowthink -f tux' >> /etc/bash.bashrc
  echo ' neofetch' >> /etc/bash.bashrc
