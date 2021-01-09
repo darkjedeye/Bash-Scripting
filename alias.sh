@@ -28,7 +28,7 @@ echo " "
 
  add-apt-repository ppa:dawidd0811/neofetch
  apt update
- apt install figlet neofetch cowsay fortune
+ apt install figlet neofetch cowsay fortune-mod
  echo "Now removing Residual components that were not needed."
  read -n 1 -s -r -p "Press any key to continue"
  echo " "
