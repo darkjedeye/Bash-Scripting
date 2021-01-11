@@ -72,7 +72,7 @@ echo "The next password prompt will be the same as the one you entered when inst
 echo " "
 mysql -u root -p "CREATE SCHEMA ospos;CREATE USER 'admin'@'%' IDENTIFIED BY 'pointofsale';GRANT ALL PRIVILEGES ON ospos . * TO 'admin'@'%' IDENTIFIED BY 'pointofsale' WITH GRANT OPTION;FLUSH PRIVILEGES;"
 echo "The next password, Please type the same password you used for MYSQL"
-cd /var/www/html/database
+cd /var/www/$DIR/database
 mysql -u root -p ospos < database.sql
 cd ../application/config
 echo "Now you want to add your encryption key. You can generate a CodeIgniter encryption key automatically using the Random Key Generator website. Type:
@@ -81,13 +81,15 @@ Find the code that says $config['encryption_key'] and add your key. Then press C
 cd /etc/apache2
 cp apache2.conf apache2.old
 echo " "
-echo " type nano apache2.conf and at this section, make sure it looks the same,
-<Directory /var/www/>
+cat /etc/apache2/apache2.conf | sed -e "s/<Directory /var/www/>
+        Options Indexes FollowSymLinks
+        AllowOverride None
+        Require all granted
+</Directory>/<Directory /var/www/>
         Options Indexes FollowSymLinks
         AllowOverride All
         Require all granted
-</Directory>
-and change AllowOverride from none to ALL"
+</Directory>"
 echo "Now you can visit your IP address in your browser. When you do, you'll see a login form.
 Login Form
 Login using these credentials:
