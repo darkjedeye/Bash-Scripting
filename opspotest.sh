@@ -77,7 +77,7 @@ cd /var/www/$DIR/database
 mysql -u root -p ospos < database.sql
 cd ../application/config
 key=$(openssl rand -base64 32) 
-sed -i 's|.|'"$key"'|83' config.php
+sed -i 's|.|'"'""$key"'|83' config.php
 cd /etc/apache2
 cp apache2.conf apache2.old
 echo " "
