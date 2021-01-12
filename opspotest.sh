@@ -65,8 +65,8 @@ unzip opensourcepos.20200903075833.3.3.2.bb309c.zip
 rm opensourcepos.20200903075833.3.3.2.bb309c.zip
 cd /etc/apache2/sites-available
 cp 000-default.conf 000-default.old
-cat /etc/apache2/sites-available/000-default.conf | sed -e  "s/DocumentRoot /var/www/html/DocumentRoot /var/www/$DIR/" 
-cat /etc/apache2/sites-available/000-default.conf | sed -e  "s/<VirtualHost *:80>/<VirtualHost *:$Port>"
+sed -i 's|DocumentRoot /var/www/html|DocumentRoot /var/www/'"$DIR"'|' /etc/apache2/sites-available/000-default.conf
+sed -i 's|^<VirtualHost[ ]\*:80>|^<VirtualHost[ ]\*:'"$Port"'>|' /etc/apache2/sites-available/000-default.conf 
 echo "The next password prompt will be the same as the one you entered when installing Mysql"
   read -n 1 -s -r -p "Press any key to continue"
 echo " "
@@ -75,8 +75,8 @@ echo "The next password, Please type the same password you used for MYSQL"
 cd /var/www/$DIR/database
 mysql -u root -p ospos < database.sql
 cd ../application/config
-key=$(openssl rand -base64 32)
-cat config.php | sed -e "s/$config['encryption_key'] = getenv('ENCRYPTION_KEY') ? getenv('ENCRYPTION_KEY') : '';/$config['encryption_key'] = getenv('ENCRYPTION_KEY') ? getenv('ENCRYPTION_KEY') : '$key';"
+key=$(openssl rand -base64 32) 
+sed -e 's|.|'"$key"'|83' config.php
 cd /etc/apache2
 cp apache2.conf apache2.old
 echo " "
