@@ -76,19 +76,11 @@ cd /var/www/$DIR/database
 mysql -u root -p ospos < database.sql
 cd ../application/config
 key=$(openssl rand -base64 32) 
-sed -e 's|.|'"$key"'|83' config.php
+sed -i 's|.|'"$key"'|83' config.php
 cd /etc/apache2
 cp apache2.conf apache2.old
 echo " "
-cat /etc/apache2/apache2.conf | sed -e "s/<Directory /var/www/>
-        Options Indexes FollowSymLinks
-        AllowOverride None
-        Require all granted
-</Directory>/<Directory /var/www/>
-        Options Indexes FollowSymLinks
-        AllowOverride All
-        Require all granted
-</Directory>"
+sed -i '166s|AllowOverride None|AllowOverride All|' /etc/apache2/apache2.conf
 echo "Now you can visit your IP address in your browser. When you do, you'll see a login form.
 Login Form
 Login using these credentials:
