@@ -70,14 +70,13 @@ cat /etc/apache2/sites-available/000-default.conf | sed -e  "s/<VirtualHost *:80
 echo "The next password prompt will be the same as the one you entered when installing Mysql"
   read -n 1 -s -r -p "Press any key to continue"
 echo " "
-mysql -u root -p "CREATE SCHEMA ospos;CREATE USER 'admin'@'%' IDENTIFIED BY 'pointofsale';GRANT ALL PRIVILEGES ON ospos . * TO 'admin'@'%' IDENTIFIED BY 'pointofsale' WITH GRANT OPTION;FLUSH PRIVILEGES;"
+mysql -uroot -p -e "CREATE DATABASE ospos;CREATE USER 'admin'@'%' IDENTIFIED BY 'pointofsale';GRANT ALL PRIVILEGES ON ospos . * TO 'admin'@'%' IDENTIFIED BY 'pointofsale' WITH GRANT OPTION;FLUSH PRIVILEGES;"
 echo "The next password, Please type the same password you used for MYSQL"
 cd /var/www/$DIR/database
 mysql -u root -p ospos < database.sql
 cd ../application/config
-echo "Now you want to add your encryption key. You can generate a CodeIgniter encryption key automatically using the Random Key Generator website. Type:
-nano config.php
-Find the code that says $config['encryption_key'] and add your key. Then press Ctrl-x to exit, making sure you save your changes."
+key=$(openssl rand -base64 32)
+cat config.php | sed -e "s/$config['encryption_key'] = getenv('ENCRYPTION_KEY') ? getenv('ENCRYPTION_KEY') : '';/$config['encryption_key'] = getenv('ENCRYPTION_KEY') ? getenv('ENCRYPTION_KEY') : '$key';"
 cd /etc/apache2
 cp apache2.conf apache2.old
 echo " "
