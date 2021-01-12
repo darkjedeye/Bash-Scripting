@@ -43,7 +43,7 @@ echo " "
 echo "Now installing PHP!"
   read -n 1 -s -r -p "Press any key to continue"
 echo " "
-apt-get install php libapache2-mod-php php-mcrypt php-mysql php-intl php-gd php-bcmath php-common php-curl
+apt-get install php libapache2-mod-php php-mcrypt php-mysql php-intl php-gd php-bcmath php-common php-curl phpmyadmin -y
 echo "Done!"
   read -n 1 -s -r -p "Press any key to continue"
 echo " "
