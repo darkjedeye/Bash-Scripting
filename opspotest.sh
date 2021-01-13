@@ -2,12 +2,12 @@
 
 #Global Variables
 echo "Your UID is ${UID}."
-declare -x SERVER
-declare -x DIR
-declare -x Port
+declare -x SERVER=" "
+declare -x DIR=" "
+declare -x Port=" "
 last = $((Port-1))
 listing = "Listen $Port"
-declare -x config
+declare -x config=" "
 site = $config.conf
 key=$(openssl rand -base64 32) 
 #check user status
