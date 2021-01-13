@@ -1,9 +1,6 @@
 #!/bin/bash
-
-
-echo "Your UID is ${UID}."
-
 #check user status
+echo "Your UID is ${UID}."
 
 #check root
 if [[ "${UID}" -eq 0 ]]
