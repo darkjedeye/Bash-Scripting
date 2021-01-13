@@ -1,7 +1,14 @@
 #!/bin/bash
 
-#Global Variables
+
 echo "Your UID is ${UID}."
+
+#check user status
+
+#check root
+if [[ "${UID}" -eq 0 ]]
+then
+#global Variables for this if
 $SERVER=" "
 $DIR=" "
 $Port=" "
@@ -10,11 +17,7 @@ $listing = "Listen $Port"
 $config=" "
 $site = $config.conf
 $key=$(openssl rand -base64 32) 
-#check user status
 
-#check root
-if [[ "${UID}" -eq 0 ]]
-then
 echo "Updating system."
 read -t 5 -n 1 -s -r -p "Press any key to continue"
 echo " "
