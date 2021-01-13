@@ -1,6 +1,16 @@
 #!/bin/bash
-#check user status
+
+#Global Variables
 echo "Your UID is ${UID}."
+export SERVER
+export DIR
+export Port
+last = $((Port-1))
+listing = "Listen $Port"
+export config
+site = $config.conf
+key=$(openssl rand -base64 32) 
+#check user status
 
 #check root
 if [[ "${UID}" -eq 0 ]]
@@ -16,12 +26,11 @@ echo " "
 echo "Installing Apache Server"
   read -t 5 -n 1 -s -r -p "Press any key to continue"
 echo " "
-echo "Please enter the url for your server." 
-read SERVER
+read -p "Please enter the url for your server." SERVER
 apt-get install apache2 -y
 echo "Adding your server name to apache config."
 read -t 5 -n 1 -s -r -p "Press any key to continue"
-echo 'ServerName $SERVER' >> /etc/apache2/apache2.conf
+echo "ServerName '$SERVER'" >> /etc/apache2/apache2.conf
 echo
 echo "Testing apache config."
 read -t 5 -n 1 -s -r -p "Press any key to continue"
@@ -51,15 +60,13 @@ echo "Rewrite mod is enabed!"
 read -t 5 -n 1 -s -r -p "Press any key to continue"
 echo
 service apache2 restart
-echo "Please type the name for the directory you would like for install"
-read DIR
+read -p "Please type the name for the directory you would like for install"
 echo "These are the ports you have setup"
 cat /etc/apache2/ports.conf
 read -t 5 -n 1 -s -r -p "Press any key to continue"
-echo "Please give desired port ranging from 80 - 89"
-read Port
-last=$((Port-1))
-listing="Listen $Port"
+read -p "Please give desired port ranging from 80 - 89" 
+last = $((Port-1))
+listing = "Listen $Port"
 sed -i 's|Listen '"$last"'|'"$listing"'|' /etc/apache2/ports.conf
 cd /var/www/
 mkdir $DIR
@@ -68,12 +75,10 @@ wget https://github.com/opensourcepos/opensourcepos/releases/download/3.3.2/open
 apt install unzip -y
 unzip opensourcepos.20200903075833.3.3.2.bb309c.zip
 rm opensourcepos.20200903075833.3.3.2.bb309c.zip
-echo " please type in the name for your sites config file"
-read config
-site=$config.conf
+read -p " please type in the name for your sites config file"
 cd /etc/apache2/sites-available 
 cp 000-default.conf $site
-sed -i 's|DocumentRoot /var/www/html|DocumentRoot /var/www/'"$DIR"'/public|' /etc/apache2/sites-available/$site
+sed -i 's|DocumentRoot /var/www/html|DocumentRoot /var/www/'"$DIR"'/public|' /etc/apache2/sites-available/'"$site"'
 sed -i 's|<VirtualHost\*:80>|<VirtualHost\*:'"$Port"'>|' /etc/apache2/sites-available/$sites
 a2ensite $site
 echo "The next password prompt will be the same as the one you entered when installing Mysql in order to create the database"
@@ -84,7 +89,6 @@ echo "The next password, Please type the same password you used for MYSQL in ord
 cd /var/www/$DIR/database
 mysql -u root -p ospos < database.sql
 cd ../application/config
-key=$(openssl rand -base64 32) 
 sed -i '361s|.|'"'""$key"'|83' config.php
 cd /etc/apache2
 cp apache2.conf apache2.old
