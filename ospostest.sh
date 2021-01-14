@@ -11,7 +11,7 @@ listing="Listen $Port"
 config=" "
 site=$config.conf
 key=$(openssl rand -base64 32) 
-localaddress="ifconfig"
+localaddress=$(ifconfig | grep "inet addr:" | grep -v 127.0.0.1 | sed -e 's/Bcast//' | cut -d: -f2)
 
 #check root
 if [[ "${UID}" -eq 0 ]]
@@ -94,7 +94,7 @@ cd /etc/apache2
 cp apache2.conf apache2.old
 echo " "
 sed -i '166s|AllowOverride None|AllowOverride All|' /etc/apache2/apache2.conf
-echo "Now you can visit your IP address '"$localaddress"' in your browser. When you do, you'll see a login form.
+echo "Now you can visit your IP address "$localaddress" in your browser. When you do, you'll see a login form.
 Login Form
 Login using these credentials:
 Username: admin
