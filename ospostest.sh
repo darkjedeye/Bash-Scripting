@@ -8,7 +8,7 @@ then
 echo "Updating system."
 read -t 5 -n 1 -s -r -p "Press any key to continue"
 echo " "
-add-apt-repository ppa:ondrej/php
+#add-apt-repository ppa:ondrej/php
 apt-get update && apt-get dist-upgrade -y 
 echo "please wait while we install the rest"
 read -t 5 -n 1 -s -r -p "Press any key to continue"
@@ -42,7 +42,7 @@ echo " "
 echo "Now installing PHP!"
   read -t 5 -n 1 -s -r -p "Press any key to continue"
 echo " "
-apt-get install php7.4 libapache2-mod-php php-mcrypt php-mysql php-intl php-gd php-bcmath php-common php-curl phpmyadmin -y
+apt-get install php7.0 libapache2-mod-php php-mcrypt php-mysql php-intl php-gd php-bcmath php-common php-curl phpmyadmin -y
 echo "Done!"
   read -t 5 -n 1 -s -r -p "Press any key to continue"
 echo " "
