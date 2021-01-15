@@ -77,9 +77,9 @@ unzip opensourcepos.20200903075833.3.3.2.bb309c.zip
 rm opensourcepos.20200903075833.3.3.2.bb309c.zip
 read -p " please type in the name for your sites config file: " config
 cd /etc/apache2/sites-available 
-cp 000-default.conf $site
-sed -i 's|DocumentRoot /var/www/html|DocumentRoot /var/www/'"$DIR"'/public|' /etc/apache2/sites-available/$site
-sed -i 's|<VirtualHost\*:80>|<VirtualHost\*:'"$Port"'>|' /etc/apache2/sites-available/$sites
+cp 000-default.conf ${site}
+sed -i 's|DocumentRoot /var/www/html|DocumentRoot /var/www/'"$DIR"'/public|' /etc/apache2/sites-available/${site}
+sed -i 's|<VirtualHost\*:80>|<VirtualHost\*:'"$Port"'>|' /etc/apache2/sites-available/${site}
 a2ensite $site
 echo "The next password prompt will be the same as the one you entered when installing Mysql in order to create the database"
 read -t 5 -n 1 -s -r -p "Press any key to continue"
