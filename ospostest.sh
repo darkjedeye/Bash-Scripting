@@ -8,11 +8,9 @@ DIR=" "
 Port=" "
 last=$((Port-1))
 listing="Listen $Port"
-config=" "
-site=$config.conf
+site=" "
 key=$(openssl rand -base64 32) 
 localaddress=$(ifconfig | grep "inet addr:" | grep -v 127.0.0.1 | sed -e 's/Bcast//' | cut -d: -f2)
-
 #check root
 if [[ "${UID}" -eq 0 ]]
 then
@@ -27,7 +25,7 @@ echo " "
 echo "Installing Apache Server"
 read -t 5 -n 1 -s -r -p "Press any key to continue"
 echo " "
-read -p "Please enter the url for your server: " SERVER
+read -p "Please enter the url for your server: " $SERVER
 apt-get install apache2 -y
 echo "Adding your server name to apache config."
 read -t 5 -n 1 -s -r -p "Press any key to continue"
@@ -61,12 +59,12 @@ echo "Rewrite mod is enabed!"
 read -t 5 -n 1 -s -r -p "Press any key to continue"
 echo " "
 service apache2 restart
-read -p "Please type the name for the directory you would like for install: " DIR
+read -p "Please type the name for the directory you would like for install: " $DIR
 echo "These are the ports you have setup"
 cat /etc/apache2/ports.conf
 read -t 5 -n 1 -s -r -p "Press any key to continue"
 echo " "
-read -p "Please give desired port ranging from 80 - 89: " Ports
+read -p "Please give desired port ranging from 80 - 89: " $Ports
 sed -i 's|Listen '"$last"'|'"$listing"'|' /etc/apache2/ports.conf
 cd /var/www/
 mkdir $DIR
@@ -75,11 +73,14 @@ wget https://github.com/opensourcepos/opensourcepos/releases/download/3.3.2/open
 apt install unzip -y
 unzip opensourcepos.20200903075833.3.3.2.bb309c.zip
 rm opensourcepos.20200903075833.3.3.2.bb309c.zip
-read -p " please type in the name for your sites config file: " config
+cd ..
+chown -R www-data:www-data ospos/
+read -p " please type in the name for your sites config file: " $site
 cd /etc/apache2/sites-available 
-cp 000-default.conf ${site}
-sed -i 's|DocumentRoot /var/www/html|DocumentRoot /var/www/'"$DIR"'/public|' /etc/apache2/sites-available/${site}
-sed -i 's|<VirtualHost\*:80>|<VirtualHost\*:'"$Port"'>|' /etc/apache2/sites-available/${site}
+config=$site.conf
+cp 000-default.conf "$config"
+sed -i 's|DocumentRoot /var/www/html|DocumentRoot /var/www/'"$DIR"'/public|' "$site"
+sed -i 's|<VirtualHost\*:80>|<VirtualHost\*:'"$Port"'>|' "$site"
 a2ensite $site
 echo "The next password prompt will be the same as the one you entered when installing Mysql in order to create the database"
 read -t 5 -n 1 -s -r -p "Press any key to continue"
