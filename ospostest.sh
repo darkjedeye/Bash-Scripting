@@ -79,9 +79,9 @@ read -p " please type in the name for your sites config file: " $site
 cd /etc/apache2/sites-available 
 config=$site.conf
 cp 000-default.conf "$config"
-sed -i 's|DocumentRoot /var/www/html|DocumentRoot /var/www/'"$DIR"'/public|' "$site"
-sed -i 's|<VirtualHost\*:80>|<VirtualHost\*:'"$Port"'>|' "$site"
-a2ensite $site
+sed -i 's|DocumentRoot /var/www/html|DocumentRoot /var/www/'"$DIR"'/public|' "$config"
+sed -i 's|<VirtualHost\*:80>|<VirtualHost\*:'"$Port"'>|' "$config"
+a2ensite $config
 echo "The next password prompt will be the same as the one you entered when installing Mysql in order to create the database"
 read -t 5 -n 1 -s -r -p "Press any key to continue"
 echo " "
