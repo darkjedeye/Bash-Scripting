@@ -25,11 +25,11 @@ echo " "
 echo "Installing Apache Server"
 read -t 5 -n 1 -s -r -p "Press any key to continue"
 echo " "
-read -p "Please enter the url for your server: " $SERVER
+read -p "Please enter the url for your server: " SERVER
 apt-get install apache2 -y
 echo "Adding your server name to apache config."
 read -t 5 -n 1 -s -r -p "Press any key to continue"
-echo 'ServerName $SERVER' >> /etc/apache2/apache2.conf
+echo "ServerName '$SERVER'" >> /etc/apache2/apache2.conf
 echo " "
 echo "Testing apache config."
 read -t 5 -n 1 -s -r -p "Press any key to continue"
@@ -59,12 +59,12 @@ echo "Rewrite mod is enabed!"
 read -t 5 -n 1 -s -r -p "Press any key to continue"
 echo " "
 service apache2 restart
-read -p "Please type the name for the directory you would like for install: " $DIR
+read -p "Please type the name for the directory you would like for install: " DIR
 echo "These are the ports you have setup"
 cat /etc/apache2/ports.conf
 read -t 5 -n 1 -s -r -p "Press any key to continue"
 echo " "
-read -p "Please give desired port ranging from 80 - 89: " $Ports
+read -p "Please give desired port ranging from 80 - 89: " Ports
 sed -i 's|Listen '"$last"'|'"$listing"'|' /etc/apache2/ports.conf
 cd /var/www/
 mkdir $DIR
@@ -75,7 +75,7 @@ unzip opensourcepos.20200903075833.3.3.2.bb309c.zip
 rm opensourcepos.20200903075833.3.3.2.bb309c.zip
 cd ..
 chown -R www-data:www-data ospos/
-read -p " please type in the name for your sites config file: " $site
+read -p " please type in the name for your sites config file: " site
 cd /etc/apache2/sites-available 
 config=$site.conf
 cp 000-default.conf "$config"
