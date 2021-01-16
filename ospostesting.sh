@@ -75,7 +75,8 @@ unzip opensourcepos.20210101114640.3.3.3.8e52bd.zip
 rm opensourcepos.20210101114640.3.3.3.8e52bd.zip
 cd ..
 chown -R www-data:www-data ospos/
-chmod -R 777 ospos/read -p " please type in the name for your sites config file: " site
+chmod -R 777 ospos/
+read -p " please type in the name for your sites config file: " site
 cd /etc/apache2/sites-available 
 config=$site.conf
 cp 000-default.conf "$config"
