@@ -56,7 +56,7 @@ then
 	apt install docker docker.io -y
 	curl -L "https://github.com/docker/compose/releases/download/1.28.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
 	chmod +x /usr/local/bin/docker-compose
-	bash install-local.sh
+	sh install-local.sh
 	echo "your applications have been"
 	figlet "installed!" -f standard -c
 	read -t 5 -n 1 -s -r -p "Press any key to continue"
