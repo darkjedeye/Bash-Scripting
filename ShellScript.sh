@@ -39,8 +39,10 @@ if [[ "$SERVER" = "yes" ]]
 then
 add-apt-repository ppa:dawidd0811/neofetch
 apt update
-apt install -y mc sl konsole cmatrix openssh-server apache2 mysql-server php phpmyadmin htop sshfs neofetch fortune-mod cowsay
-
+apt install -y mc sl konsole cmatrix openssh-server apache2 mysql-server php phpmyadmin htop sshfs neofetch cockpit cockpi-* docker docker.io fortune-mod cowsay python3-pip
+curl -L "https://github.com/docker/compose/releases/download/1.28.5/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+chmod +x /usr/local/bin/docker-compose
+ln -s /usr/local/bin/docker-compose /usr/bin/docker-compose
 apt install figlet -y
 echo "your applications have been"
 figlet "installed!" -f standard -c
@@ -70,7 +72,7 @@ fi
  then
  add-apt-repository ppa:dawidd0811/neofetch
  apt update
- apt install -y mc yakuake sl kate konsole cmatrix openssh-server figlet toilet virtualbox virtualbox-dkms sshfs neofetch fortune cowsay
+ apt install -y mc yakuake sl kate konsole cmatrix openssh-server figlet toilet virtualbox virtualbox-dkms sshfs neofetch cockpit cockpit-* docker docker.io fortune cowsay python3-pip
  echo "your applications have been"
 figlet "installed!" -f standard -c
  read -t 5 -n 1 -s -r -p "Press any key to continue"
