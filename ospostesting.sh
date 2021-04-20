@@ -87,7 +87,7 @@ read -p "Please type in the name of your DataBase!" DB
 echo "The next password prompt will be the same as the one you entered when installing Mysql in order to create the database"
 read -t 5 -n 1 -s -r -p "Press any key to continue"
 echo " "
-mysql -uroot -p -e "CREATE DATABASE '"$DB"';CREATE USER 'admin'@'%' IDENTIFIED BY 'pointofsale';GRANT ALL PRIVILEGES ON '"$DB"' . * TO 'admin'@'%' IDENTIFIED BY 'pointofsale' WITH GRANT OPTION;FLUSH PRIVILEGES;"
+mysql -uroot -p -e "CREATE DATABASE $(DB);CREATE USER 'admin'@'%' IDENTIFIED BY 'pointofsale';GRANT ALL PRIVILEGES ON $(DB) . * TO 'admin'@'%' IDENTIFIED BY 'pointofsale' WITH GRANT OPTION;FLUSH PRIVILEGES;"
 echo "The next password, Please type the same password you used for MYSQL in order to populate the database"
 cd /var/www/$DIR/database
 mysql -u root -p '"$DB"' < database.sql
