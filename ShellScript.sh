@@ -34,15 +34,12 @@ echo "Is your system a server or a desktop OS?"
 read answer
 if [[ "$answer" = "server" ]]
 then 
-read -p "Would you like the following apps will be installed. mc sl konsole cmatrix openssh-server figlet toilet apache2 mysql-server php phpmyadmin [yes/no]: " SERVER
+read -p "Would you like the following apps will be installed. mc sl konsole cmatrix openssh-server figlet toilet apache2 mysql-server php phpmyadmin neofetch cockpit cowsay fortune [yes/no]: " SERVER
 if [[ "$SERVER" = "yes" ]]
 then
 add-apt-repository ppa:dawidd0811/neofetch
 apt update
-apt install -y mc sl konsole cmatrix openssh-server apache2 mysql-server php phpmyadmin htop sshfs neofetch cockpit cockpi-* docker docker.io fortune-mod cowsay python3-pip
-curl -L "https://github.com/docker/compose/releases/download/1.28.5/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
-chmod +x /usr/local/bin/docker-compose
-ln -s /usr/local/bin/docker-compose /usr/bin/docker-compose
+apt install -y mc sl konsole cmatrix openssh-server apache2 mysql-server php phpmyadmin htop sshfs neofetch cockpit cockpit-* docker docker.io fortune-mod cowsay python3-pip
 apt install figlet -y
 echo "your applications have been"
 figlet "installed!" -f standard -c
