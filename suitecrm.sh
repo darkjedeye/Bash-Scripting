@@ -33,8 +33,11 @@ echo " "
 read -p "Would you like the following apps will be installed. mc sl konsole cmatrix openssh-server figlet toilet apache2 mysql-server php phpmyadmin neofetch cockpit cowsay fortune [yes/no]: " SERVER
 if [[ "$SERVER" = "yes" ]]
 then
-add-apt-repository ppa:dawidd0811/neofetch
-apt update
+sudo add-apt-repository ppa:dawidd0811/neofetch
+sudo apt -y install software-properties-common
+sudo add-apt-repository ppa:ondrej/php
+sudo apt-get update
+
 apt install -y mc sl konsole cmatrix openssh-server figlet toilet apache2 mysql-server phpmyadmin htop sshfs neofetch cockpit cockpit-*  fortune-mod cowsay unzip php-imagick php7.4-fpm php7.4-mysql php7.4-common php7.4-gd php7.4-imap php7.4-json php7.4-curl php7.4-zip php7.4-xml php7.4-mbstring php7.4-bz2 php7.4-intl php7.4-gmp
 echo "your applications have been"
 figlet "installed!" -f standard -c
@@ -99,6 +102,11 @@ sudo systemctl restart php7.4-fpm
 sed -i 's|default_socket_timeout = 60|default_socket_timeout = 6000|' /etc/php/7.4/fpm/php.ini
 sed -i 's|default_socket_timeout = 60|default_socket_timeout = 6000|' /etc/php/7.4/apache/php.ini
 sudo systemctl restart apache2
+sudo rm -rf /etc/apt/sources.list.d/ondrej-ubuntu-php-xenial.list
+sudo rm -rf /etc/apt/trusted.gpg.d/ondrej_ubuntu_php*
+
+sudo apt autoremove -y
+sudo apt update
 
 figlet "Porvisioned" -f standard -c 
 

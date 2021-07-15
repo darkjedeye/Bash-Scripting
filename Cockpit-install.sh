@@ -13,7 +13,9 @@ echo "This script will install Cockpit on your system. Are you sure you would li
 read ANSWER
 if [[ $ANSWER = "y" ]]
 then
-apt-get install cockpit -y
+apt-get install cockpit cockpit-* -y
+echo "enableing socket"
+read -t 10 -n 1 -s -r -p "Press any key to continue"
 systemctl enable --now cockpit.socket
 netstat -a | grep 9090
 systemctl enable --now cockpit.socket
