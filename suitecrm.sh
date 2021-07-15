@@ -19,7 +19,7 @@ then
 	
 	#get the system to most up to date specs....
 localaddress=$(ifconfig | grep "inet addr:" | grep -v 127.0.0.1 | sed -e 's/Bcast//' | cut -d: -f2)
-
+sudo aptr install figlet
 apt update && apt upgrade -y
 echo "your system has been updated and upgraded!"
 read -t 5 -n 1 -s -r -p "Press any key to continue"
@@ -38,7 +38,7 @@ sudo apt -y install software-properties-common
 sudo add-apt-repository ppa:ondrej/php
 sudo apt-get update
 
-apt install -y mc sl konsole cmatrix openssh-server figlet toilet apache2 mysql-server phpmyadmin htop sshfs neofetch cockpit  fortune-mod cowsay unzip php-imagick php7.2-{fpm,mysql,common,gd,imap,json,curl,zip,xml,mbstring,bz2,intl,gmp}
+apt install -y mc sl konsole cmatrix openssh-server toilet apache2 mysql-server phpmyadmin htop sshfs neofetch cockpit  fortune-mod cowsay unzip php-imagick php7.2-{fpm,mysql,common,gd,imap,json,curl,zip,xml,mbstring,bz2,intl,gmp}
 echo "your applications have been"
 figlet "installed!" -f standard -c
  read -n 1 -s -r -p "Press any key to continue"
@@ -71,7 +71,7 @@ sudo echo "
   </Directory>
   
 
-Include /etc/apache2/conf-available/php7.4-fpm.conf
+Include /etc/apache2/conf-available/php7.2-fpm.conf
 
 </VirtualHost>
 " >> /etc/apache2/sites-available/suitecrm.conf
@@ -80,7 +80,7 @@ sudo a2ensite suitecrm.conf
 sudo systemctl reload apache2
 echo "Setting Parameters for MYSQL"
 read -n 1 -s -r -p "Press any key to continue" 
-sudo mysql -u root -p -e "CREATE DATABASE suitecrm;CREATE USER 'lynxsolve'@'%' IDENTIFIED BY 'lynxsolve1';GRANT ALL PRIVILEGES ON suitecrm . * TO 'lynxsolve'@'%' IDENTIFIED BY 'lynxsolve1' WITH GRANT OPTION;FLUSH PRIVILEGES; EXIT;"
+sudo mysql -u root -p -e "CREATE DATABASE suitecrm;CREATE USER 'lynxsolve'@'%' IDENTIFIED BY 'lynxsolve1';GRANT ALL PRIVILEGES ON suitecrm . * TO 'lynxsolve'@'%' IDENTIFIED BY 'lynxsolve1' WITH GRANT OPTION;FLUSH PRIVILEGES;"
 
 echo "Provisioning files and Directories"
 read -n 1 -s -r -p "Press any key to continue"
@@ -97,10 +97,10 @@ sudo chown -R www-data:www-data /var/www/suitecrm/
 sudo chmod -R 755 .
 sudo chmod -R 775 cache custom modules themes data upload
 sudo chmod 775 config_override.php 2>/dev/null
-sed -i 's|upload_max_filesize = 2M|upload_max_filesize = 2G|' /etc/php/7.4/fpm/php.ini
+sed -i 's|upload_max_filesize = 2M|upload_max_filesize = 2G|' /etc/php/7.2/fpm/php.ini
 sudo systemctl restart php7.4-fpm
-sed -i 's|default_socket_timeout = 60|default_socket_timeout = 6000|' /etc/php/7.4/fpm/php.ini
-sed -i 's|default_socket_timeout = 60|default_socket_timeout = 6000|' /etc/php/7.4/apache/php.ini
+sed -i 's|default_socket_timeout = 60|default_socket_timeout = 6000|' /etc/php/7.2/fpm/php.ini
+sed -i 's|default_socket_timeout = 60|default_socket_timeout = 6000|' /etc/php/8.0/apache2/php.ini
 sudo systemctl restart apache2
 sudo rm -rf /etc/apt/sources.list.d/ondrej-ubuntu-php-xenial.list
 sudo rm -rf /etc/apt/trusted.gpg.d/ondrej_ubuntu_php*
