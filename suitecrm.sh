@@ -48,6 +48,7 @@ figlet "installed!" -f standard -c
 sudo a2dismod php7.4
 sudo a2dismod mpm_prefork
 sudo a2enmod mpm_event proxy_fcgi setenvif
+sudo a2dissite 000-default.conf
 sudo systemctl restart apache2
 sudo touch /etc/apache2/sites-available/suitecrm.conf
 sudo echo "
@@ -98,6 +99,7 @@ sudo chmod -R 755 .
 sudo chmod -R 775 cache custom modules themes data upload
 sudo chmod 775 config_override.php 2>/dev/null
 sed -i 's|upload_max_filesize = 2M|upload_max_filesize = 2G|' /etc/php/7.2/fpm/php.ini
+sed -i 's|upload_max_filesize = 2M|upload_max_filesize = 2G|' /etc/php/8.0/apache2/php.ini
 sudo systemctl restart php7.4-fpm
 sed -i 's|default_socket_timeout = 60|default_socket_timeout = 6000|' /etc/php/7.2/fpm/php.ini
 sed -i 's|default_socket_timeout = 60|default_socket_timeout = 6000|' /etc/php/8.0/apache2/php.ini
