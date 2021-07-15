@@ -18,7 +18,7 @@ then
 	echo "Now installing software"
 	
 	#get the system to most up to date specs....
-localaddress=$(ifconfig | grep "inet addr:" | grep -v 127.0.0.1 | sed -e 's/Bcast//' | cut -d: -f2)
+
 sudo aptr install figlet
 apt update && apt upgrade -y
 echo "your system has been updated and upgraded!"
@@ -110,7 +110,7 @@ sudo apt update
 
 figlet "Porvisioned" -f standard -c 
 
-echo "Now you can visit your IP address "$localaddress" or "Defined url" in your browser. When you do, you'll see an instalation wizard."
+echo "Now you can visit your IP address  or Defined url in your browser. When you do, you'll see an instalation wizard."
 read -n 1 -s -r -p "Press any key to continue"
 
  else
