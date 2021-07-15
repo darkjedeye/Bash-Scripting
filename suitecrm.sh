@@ -37,7 +37,7 @@ sudo add-apt-repository ppa:dawidd0811/neofetch
 sudo apt -y install software-properties-common
 sudo add-apt-repository ppa:ondrej/php
 sudo apt-get update
-
+sudo apt install figlet
 apt install -y mc sl konsole cmatrix openssh-server toilet apache2 mysql-server phpmyadmin htop sshfs neofetch cockpit  fortune-mod cowsay unzip php-imagick php7.2-{fpm,mysql,common,gd,imap,json,curl,zip,xml,mbstring,bz2,intl,gmp}
 echo "your applications have been"
 figlet "installed!" -f standard -c
