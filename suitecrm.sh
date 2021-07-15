@@ -38,7 +38,7 @@ sudo apt -y install software-properties-common
 sudo add-apt-repository ppa:ondrej/php
 sudo apt-get update
 
-apt install -y mc sl konsole cmatrix openssh-server figlet toilet apache2 mysql-server phpmyadmin htop sshfs neofetch cockpit cockpit-*  fortune-mod cowsay unzip php-imagick php7.4-fpm php7.4-mysql php7.4-common php7.4-gd php7.4-imap php7.4-json php7.4-curl php7.4-zip php7.4-xml php7.4-mbstring php7.4-bz2 php7.4-intl php7.4-gmp
+apt install -y mc sl konsole cmatrix openssh-server figlet toilet apache2 mysql-server phpmyadmin htop sshfs neofetch cockpit  fortune-mod cowsay unzip php-imagick php7.2-{fpm,mysql,common,gd,imap,json,curl,zip,xml,mbstring,bz2,intl,gmp}
 echo "your applications have been"
 figlet "installed!" -f standard -c
  read -n 1 -s -r -p "Press any key to continue"
