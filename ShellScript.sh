@@ -39,7 +39,7 @@ if [[ "$SERVER" = "yes" ]]
 then
 add-apt-repository ppa:dawidd0811/neofetch
 apt update
-apt install -y mc sl konsole cmatrix openssh-server apache2 mysql-server php phpmyadmin htop sshfs neofetch cockpit cockpit-* docker docker.io fortune-mod cowsay python3-pip
+apt install -y mc sl konsole cmatrix openssh-server apache2 mysql-server php phpmyadmin bashtop sshfs fastfetch fortune-mod cowsay python3-pip
 apt install figlet -y
 echo "your applications have been"
 figlet "installed!" -f standard -c
